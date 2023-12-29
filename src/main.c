@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "brsar.c"
+#include "lib/brsar.h"
 
 void print_usage(){
     printf("INFO: Prints file information to screen\n syntax: briiscola.exe <filename.brsar> INFO\n");
