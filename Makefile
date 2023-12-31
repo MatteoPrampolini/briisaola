@@ -8,7 +8,7 @@ LDFLAGS =
 all: options briiscola
 
 objdir:
-	mkdir -p ${OBJDIR}
+	if not exist ${OBJDIR} mkdir ${OBJDIR}
 
 options:
 	@echo briiscola build options:
