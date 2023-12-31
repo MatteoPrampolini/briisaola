@@ -25,6 +25,7 @@ briiscola: ${OBJ}
 	${CC} -o $@ $(addprefix ${OBJDIR}/,$(notdir ${OBJ})) ${LDFLAGS}
 
 clean:
-	rm -rf ${OBJ}
+	rm -f $(addprefix ${OBJDIR}/,$(notdir ${OBJ}))
+	rmdir --ignore-fail-on-non-empty ${OBJDIR}
 
 .PHONY: all objdir clean
