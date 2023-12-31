@@ -8,7 +8,7 @@ LDFLAGS =
 all: options briiscola
 
 objdir:
-	if not exist ${OBJDIR} mkdir ${OBJDIR}
+	mkdir -p ${OBJDIR}
 
 options:
 	@echo briiscola build options:
@@ -25,6 +25,6 @@ briiscola: ${OBJ}
 	${CC} -o $@ $(addprefix ${OBJDIR}/,$(notdir ${OBJ})) ${LDFLAGS}
 
 clean:
-	rm -f ${OBJ}
+	rm -rf ${OBJ}
 
 .PHONY: all objdir clean
