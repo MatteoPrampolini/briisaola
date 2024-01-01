@@ -5,6 +5,7 @@ OBJDIR = obj
 CFLAGS = 
 LDFLAGS = 
 
+
 all: options briiscola
 
 objdir:

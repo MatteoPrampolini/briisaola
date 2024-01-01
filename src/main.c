@@ -1,55 +1,65 @@
+#include <iso646.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include "lib/brsar.h"
 
-void print_usage(){
-    printf("INFO: Prints file information to screen\n syntax: briiscola.exe <filename.brsar> INFO\n");
-    printf("DUMP: Extract file into specified folder\n syntax: briiscola.exe <filename.brsar> DUMP OUTPUT <folder_name>\n");
+void usage()
+{
+  fputs("\e[1;4mUsage:\e[0m briiscola [flags] <action> [options] input...\n", stderr);
+  fputs("\n\e[1;4mFlags:\e[0m\n", stderr);
+  fputs("\n\e[1;4mActions:\e[0m\n\t\e[1minfo\e[22m: prints file information\n\t\e[1mdump\e[22m: extract file into specified folder\n", stderr);
+  fputs("\n\e[1;4mOptions:\e[0m\n\t\e[1m-o/--output\e[22m: specify the output file\n", stderr);
 }
+
 int main(int argc, char *argv[])
 {
     if (argc <2)
     {
-        printf("Usage: %s <file.brsar> <info/dump>\n", argv[0]);
+        usage();
         return 1;
     }
-    char *filename = argv[1];
-    char *option = argv[2];
+    char *action = argv[1];
+    char *filename = argv[2];
 
-    if (strstr(filename, ".brsar") == NULL && strstr(filename, ".BRSAR") == NULL)
+    // Change it for RSAR magic string check
+    // if (strstr(filename, ".brsar") == NULL && strstr(filename, ".BRSAR") == NULL)
+    // {
+    //     printf("The file must have the .brsar extension\n");
+    //     return 2;
+    // }
+
+    //action to lowercase
+    for (int i = 0; action[i]; i++)
     {
-        printf("The file must have the .brsar extension\n");
-        return 2;
-    }
-    //option to lowercase
-    for (int i = 0; option[i]; i++)
-    {
-        option[i] = tolower(option[i]);
+        action[i] = tolower(action[i]);
     }
     //help
-    if (strcmp(option, "help") ==0 || strcmp(option, "h") ==0){
-       print_usage();
+    if (!strncmp(action, "help", 4) || !strncmp(action, "h", 1))
+    {
+        usage();
+        return 0;
     }
     //analyze
-    else if (strcmp(option, "info") ==0 || strcmp(option, "i") ==0)
+    else if (!strcmp(action, "info") || !strncmp(action, "i", 1))
     {
-        analyzeFile(filename);
+        file_info(filename);
     }
     //dump
-    else if (strcmp(option, "dump") == 0)
+    else if (!strncmp(action, "dump", 4) || !strncmp(action, "d", 1))
     {
-        if(argc<4){
-             printf("Incompleted command. Usage: briiscola.exe help\n");
-             return 3;
-        }
-        dumpFile(filename);
+        // if(argc<4){
+        //      printf("Incompleted command. Usage: briiscola.exe help\n");
+        //      return 3;
+        // }
+        file_dump(filename);
     }
     //error
     else
     {
-        printf("Invalid option. Usage: %s help\n", argv[0]);
-        return 4;
+        fputs("\e[1;31mERROR\e[0m: Invalid action\n\n", stderr);
+        usage();
+        return 1;
     }
 
     return 0;
