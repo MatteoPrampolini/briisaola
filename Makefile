@@ -1,10 +1,9 @@
 CC = gcc
-SRC = src/main.c src/lib/brsar.c
+SRC = src/main.c src/lib/brsar.c src/lib/structs/header.c src/lib/structs/symb.c src/lib/structs/util.c
 OBJ = ${SRC:.c=.o}
 OBJDIR = obj
 CFLAGS = 
 LDFLAGS = 
-
 
 all: options briiscola
 
