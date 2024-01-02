@@ -1,7 +1,7 @@
 #include "header.h"
 bool _read_header(FILE *file, brsar_header_t *header)
 {   
-    return _read_struct(file,header,sizeof(*header));
+    return _read_struct(file,0,header,46);
 }
 void _null_header(brsar_header_t *header)
 {

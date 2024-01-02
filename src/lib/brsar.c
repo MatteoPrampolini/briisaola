@@ -12,7 +12,7 @@ void file_info(const char *filename)
         fprintf(stderr, "\e[1;31mERROR\e[0m: %s doesn't exist.\n", filename);
         exit(EXIT_FAILURE);
     }
-
+    //HEADER
     brsar_header_t header;
     bool is_big_endian_b=false;
     if (_read_header(file, &header))
@@ -30,19 +30,40 @@ void file_info(const char *filename)
         fputs("\e[1;31mERROR\e[0m: Failed to read header\n", stderr);
         exit(EXIT_FAILURE);
     }
+    //SYMB
     brsar_symb_t symb;
         if (_read_symb(file,&symb))
     {
         if (is_big_endian_b)
         {
-            _swap_header(&header);
+        _swap_symb(&symb);
         }
-        header_contents(&header);
+        symb_contents(&symb);
     }
     else
     {
-        // Failed to read header
-        fputs("\e[1;31mERROR\e[0m: Failed to read header\n", stderr);
+        // Failed to read symb
+        fputs("\e[1;31mERROR\e[0m: Failed to read symb\n", stderr);
+        exit(EXIT_FAILURE);
+    }
+    //SYMB FILENAME
+        brsar_symb_file_name_t filename_table;
+        if (_read_filename_table(file,&filename_table,is_big_endian_b))
+    {
+        if (is_big_endian_b)
+        {
+        _swap_filename_table(&filename_table,is_big_endian_b);
+        }
+        filename_table_contents(&filename_table);
+        printf("%u\n",filename_table.offsetToFileName[0]);
+         printf("%u\n",filename_table.offsetToFileName[1]);
+        printf("%u\n",filename_table.offsetToFileName[2]);
+        free(filename_table.offsetToFileName);
+    }
+    else
+    {
+        // Failed to read symb
+        fputs("\e[1;31mERROR\e[0m: Failed to read symb\n", stderr);
         exit(EXIT_FAILURE);
     }
     

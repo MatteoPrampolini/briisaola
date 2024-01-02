@@ -1,4 +1,4 @@
-#include "util.h"
+#include "../util.h"
 typedef struct {
     char magic[4];            // Section magic. SYMB in ASCII.
     uint32_t size;            // Size of the SYMB section.
@@ -11,5 +11,6 @@ typedef struct {
 //symb
 
 bool _read_symb(FILE *file, brsar_symb_t *symb);
-void _null_symb(brsar_symb_t *header);
-void symb_contents(brsar_symb_t* header);
+void _null_symb(brsar_symb_t *symb);
+void symb_contents(brsar_symb_t* symb);
+void _swap_symb(brsar_symb_t *symb);

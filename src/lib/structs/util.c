@@ -11,12 +11,13 @@ uint32_t _swap32(uint32_t n)
            ((n << 24) & 0xFF000000);
 }
 
-bool _read_struct(FILE *file, void *strct, long unsigned int struct_size)
+bool _read_struct(FILE *file,size_t file_offset, void *strct, long unsigned int struct_size)
 {
    if (!file || !strct)
     {
         return false;
     }
+    fseek(file,file_offset,SEEK_SET);
     // Read the struct from the file
     size_t bytes_read = fread(strct, struct_size, 1, file);
 
@@ -27,4 +28,19 @@ bool _read_struct(FILE *file, void *strct, long unsigned int struct_size)
     }
 
     return true;
+}
+
+void _swap_magic(char magic[4])
+{
+    if (magic == NULL) {
+        return;
+    }
+        char temp = magic[0];
+        magic[0] = magic[3];
+        magic[3] = temp;
+
+        temp = magic[1];
+        magic[1] = magic[2];
+        magic[2] = temp;
+    
 }
