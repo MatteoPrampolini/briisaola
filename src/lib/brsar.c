@@ -55,9 +55,9 @@ void file_info(const char *filename)
         _swap_filename_table(&filename_table,is_big_endian_b);
         }
         filename_table_contents(&filename_table);
-        printf("%u\n",filename_table.offsetToFileName[0]);
-         printf("%u\n",filename_table.offsetToFileName[1]);
-        printf("%u\n",filename_table.offsetToFileName[2]);
+        printf("%x\n",filename_table.offsetToFileName[0]);
+        // printf("%u\n",filename_table.offsetToFileName[1]);
+        // printf("%u\n",filename_table.offsetToFileName[2]);
         free(filename_table.offsetToFileName);
     }
     else
