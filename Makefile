@@ -1,5 +1,5 @@
 CC = gcc
-SRC = src/main.c src/lib/brsar.c src/lib/structs/header.c src/lib/structs/symb/symb.c src/lib/structs/util.c src/lib/structs/symb/symb_file_name.c src/lib/structs/symb/symb_string_table.c src/lib/structs/symb/symb_string_tree.c src/lib/structs/dataref.c
+SRC = src/main.c src/lib/brsar.c src/lib/structs/header.c src/lib/structs/symb/symb.c src/lib/structs/util.c src/lib/structs/symb/symb_file_name.c src/lib/structs/symb/symb_string_table.c src/lib/structs/symb/symb_string_tree.c src/lib/structs/dataref.c src/lib/structs/info/info.c src/lib/structs/datatable.c
 OBJ = ${SRC:.c=.o}
 OBJDIR = obj
 CFLAGS = 
