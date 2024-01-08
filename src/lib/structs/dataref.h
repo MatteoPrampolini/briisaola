@@ -1,4 +1,6 @@
+#pragma once
 #include "util.h"
+
 typedef struct {
     uint8_t referenceType;  //Reference type. (0 = Address, 1 = Offset).
     uint8_t dataType;       // Offset 0x01, Byte
