@@ -1,5 +1,6 @@
 #include "../util.h"
 typedef struct {
+    //TODO double check conflits with https://gota7.github.io/RhythmRevolution/specs/soundArchive.html
     char magic[4];            // Section magic. SYMB in ASCII.
     uint32_t size;            // Size of the SYMB section.
     uint32_t fileNameOffset;  // Offset to file name table.

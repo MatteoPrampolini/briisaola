@@ -17,22 +17,22 @@ void header_contents(brsar_header_t *header)
 
     if (!header)
         return;
-    printf("\n////HEADER////\n");
-    printf("Magic: %s\n", _is_rsar_magic(header) ? "valid" : "invalid");
-    printf("Endianness: %s\n", _is_big_endian(header) ? "true" : "false");
+    fprintf(stderr,"\e[1;4mHeader:\e[0m\n");
+    fprintf(stderr,"► Magic: %s\n", _is_rsar_magic(header) ? "valid" : "invalid");
+    fprintf(stderr,"► Endianness: %s\n", _is_big_endian(header) ? "true" : "false");
 
     uint8_t byte1 = (header->version >> 8) & 0xFF;
     uint8_t byte2 = header->version & 0xFF;
-    printf("Version: %02X %02X\n", byte1, byte2);
-    printf("File length: %u\n", header->fileLength);
-    printf("Number of sections: %u\n", header->numSections);
-    printf("Offset to the SYMB section: %u\n", header->symbOffset);
-    printf("Size of the SYMB section: %u\n", header->symbSize);
-    printf("Offset to the INFO section: %u\n", header->infoOffset);
-    printf("Size of the INFO section: %u\n", header->infoSize);
-    printf("Offset to the FILE section: %u\n", header->fileOffset);
-    printf("Size of the FILE section %u\n", header->fileSize);
-}
+    fprintf(stderr,"► Version: %02X %02X\n", byte1, byte2);
+    fprintf(stderr,"► File length: %u\n", header->fileLength);
+    fprintf(stderr,"► Number of sections: %u\n", header->numSections);
+    fprintf(stderr,"► Offset to the SYMB section: %u\n", header->symbOffset);
+    fprintf(stderr,"► Size of the SYMB section: %u\n", header->symbSize);
+    fprintf(stderr,"► Offset to the INFO section: %u\n", header->infoOffset);
+    fprintf(stderr,"► Size of the INFO section: %u\n", header->infoSize);
+    fprintf(stderr,"► Offset to the FILE section: %u\n", header->fileOffset);
+    fprintf(stderr,"► Size of the FILE section %u\n", header->fileSize);
+    fprintf(stderr,"--------------------------------------\n");}
 
 //  Swap `header`variables between big endian and little endian notation
 void _swap_header(brsar_header_t *header)

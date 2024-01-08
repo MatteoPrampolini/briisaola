@@ -11,14 +11,15 @@ void _swap_dataref(dataref_t *dataref)
      dataref->value=_swap32(dataref->value);
 }
 
-void dataref_contents(dataref_t *dataref)
+void dataref_contents(dataref_t *dataref, char* name )
 {
             if (!dataref)
         return;
-    printf("\n////DATAREF////\n");
-    printf("Reference type: %s\n",dataref->referenceType?"Offset":"Address");
-    printf("Data type: %c\n",dataref->dataType);
-    printf("Value: %x\n",dataref->value);
+    fprintf(stderr,"\t\e[1;4m%s Dataref:\e[0m\n",name);
+    fprintf(stderr,"\t► Reference type: %s\n",dataref->referenceType?"Offset":"Address");
+    fprintf(stderr,"\t► Data type: %d\n",dataref->dataType);
+    fprintf(stderr,"\t► Value: %x\n",dataref->value);
+    
 }
 
 void _null_dataref(dataref_t *dataref)

@@ -32,14 +32,14 @@ void symb_contents(brsar_symb_t *symb)
 {
     if (!symb)
         return;
-    printf("\n////SYMB////\n");
-    printf("magic: %s\n",strncmp(symb->magic,"SYMB",4)?"invalid":"valid");
+   fprintf(stderr,"\e[1;4mSymb:\e[0m\n", stderr);
+   fprintf(stderr,"► Magic: %s\n",strncmp(symb->magic,"SYMB",4)?"invalid":"valid");
     //printf("Section magic: %c%c%c%c\n", symb->magic[0], symb->magic[1], symb->magic[2], symb->magic[3]);
-    printf("Size of the SYMB section: %u\n", symb->size);
-    printf("Offset to file name table: %u\n", symb->fileNameOffset);
-    printf("Offset to Sound tree: %u\n", symb->soundTreeOffset);
-    printf("Offset to Player tree: %u\n", symb->playerTreeOffset);
-    printf("Offset to Group tree: %u\n", symb->groupTreeOffset);
-    printf("Offset to Bank tree: %u\n", symb->bankTreeOffset);
+   fprintf(stderr,"► Size of the SYMB section: %u\n", symb->size);
+   fprintf(stderr,"► Offset to file name table: %u\n", symb->fileNameOffset);
+   fprintf(stderr,"► Offset to Sound tree: %u\n", symb->soundTreeOffset);
+   fprintf(stderr,"► Offset to Player tree: %u\n", symb->playerTreeOffset);
+   fprintf(stderr,"► Offset to Group tree: %u\n", symb->groupTreeOffset);
+   fprintf(stderr,"► Offset to Bank tree: %u\n", symb->bankTreeOffset);
+   fprintf(stderr,"--------------------------------------\n");
 }
-

@@ -25,8 +25,9 @@ void filename_table_contents(brsar_symb_file_name_t *filename_table)
 {
         if (!filename_table)
         return;
-    printf("\n////SYMB FILENAME TABLE////\n");
-    printf("Number of entries: %u\n",filename_table->numberOfEntries);
+    fprintf(stderr,"\e[1;4mSymb Filename Table:\e[0m\n");
+    fprintf(stderr,"► Number of entries: %u\n",filename_table->numberOfEntries);
+    fprintf(stderr,"--------------------------------------\n");
 }
 
 void _swap_filename_table(brsar_symb_file_name_t *filename_table,bool is_big_endian_b)

@@ -9,4 +9,4 @@ typedef struct {
 bool _read_dataref(FILE *file,size_t offset, dataref_t *dataref);
 void _null_dataref(dataref_t *dataref);
 void _swap_dataref(dataref_t *dataref);
-void dataref_contents(dataref_t* dataref);
+void dataref_contents(dataref_t* dataref, char* name);

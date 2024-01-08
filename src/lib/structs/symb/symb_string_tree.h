@@ -9,3 +9,4 @@ typedef struct {
     uint32_t stringIndex;   // String Index.
     uint32_t index;         // Index.
 } brsar_symb_string_tree_t;
+void _swap_tree(brsar_symb_string_tree_t *tree);
